@@ -1,11 +1,20 @@
 use tokio_postgres::NoTls;
 
-//initialize a pool of connections
-pub async fn init_pool() -> bb8::Pool<bb8_postgres::PostgresConnectionManager<NoTls>> {
+fn get_credentials() -> (String, String) {
+    print!("Enter username: ");
+    let mut user = String::new();
+    let stdin = std::io::stdin();
+    stdin.read_line(&mut user).unwrap();
     let password = rpassword::prompt_password("Your password: ").unwrap();
 
+    (user, password)
+}
+
+//initialize a pool of connections
+pub async fn init_pool() -> bb8::Pool<bb8_postgres::PostgresConnectionManager<NoTls>> {
+    let (user, password) = get_credentials();
     let manager = bb8_postgres::PostgresConnectionManager::new_from_stringlike(
-        format!("host=localhost user=hi password={}", password),
+        format!("host=localhost user={} password={}", user, password),
         NoTls,
     )
     .unwrap();
