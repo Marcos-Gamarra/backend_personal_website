@@ -1,7 +1,7 @@
 use tokio_postgres::NoTls;
 
 fn get_credentials() -> (String, String) {
-    print!("Enter username: ");
+    println!("Enter username: ");
     let mut user = String::new();
     let stdin = std::io::stdin();
     stdin.read_line(&mut user).unwrap();
