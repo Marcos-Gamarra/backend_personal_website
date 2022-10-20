@@ -1,0 +1,15 @@
+[package]
+name = "backend_personal_website"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "4"
+tokio-postgres = "0.7"
+tokio = { version = "1", features = ["full"] }
+bb8 = "0.8.0"
+bb8-postgres = "0.8.1"
+rpassword = "7.1.0"
+
